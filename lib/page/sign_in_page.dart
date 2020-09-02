@@ -14,31 +14,91 @@ class _SignInPageState extends State<SignInPage> {
 
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Hero(
-              tag: "signin",
-              child: Column(
+          child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: Stack(
                 children: [
-                  Container(
-                    decoration:
-                        buttonDecoration.copyWith(color: Color(0xFF322C56)),
-                    width: double.infinity,
-                    height: 70,
-                    child: Center(
-                        child: Text(
-                      'Sign In',
-                      style: textTheme.headline2.copyWith(color: Colors.white),
-                    )),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration:
+                            buttonDecoration.copyWith(color: Color(0xFFedf0f7)),
+                        width: double.infinity,
+                        height: roundButtonHeight,
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        decoration:
+                            buttonDecoration.copyWith(color: Color(0xFFedf0f7)),
+                        width: double.infinity,
+                        height: roundButtonHeight,
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Hero(
+                        tag: 'signin',
+                        child: Container(
+                          decoration: buttonDecoration.copyWith(
+                              color: Color(0xFF322C56)),
+                          width: double.infinity,
+                          height: roundButtonHeight,
+                          child: Center(
+                              child: Text(
+                            'Sign In',
+                            style: textTheme.headline2
+                                .copyWith(color: Colors.white),
+                          )),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text('Forgot password?'),
+                      SizedBox(
+                        height: 50,
+                      ),
+                    ],
                   ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            color: Colors.grey,
+                            height: 30,
+                            width: 60,
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Container(
+                            color: Colors.grey,
+                            height: 30,
+                            width: 60,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text("Don't have an account? Sign up")
+                    ],
+                  )
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       )),
     );
   }

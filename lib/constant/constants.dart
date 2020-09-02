@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 const buttonDecoration =
     BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40)));
 
+const double roundButtonHeight = 50;
+
 const customTextTheme = TextTheme(
   headline1: TextStyle(
       fontSize: 60.0,
@@ -12,7 +14,7 @@ const customTextTheme = TextTheme(
       fontStyle: FontStyle.italic,
       letterSpacing: 4.0),
   headline2: TextStyle(
-      fontSize: 17.0,
+      fontSize: 15.0,
       fontWeight: FontWeight.normal,
       color: Colors.white,
       letterSpacing: 1.0),

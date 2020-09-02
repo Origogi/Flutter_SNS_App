@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
                       decoration:
                           buttonDecoration.copyWith(color: Color(0xFF322C56)),
                       width: double.infinity,
-                      height: 70,
+                      height: roundButtonHeight,
                       child: Center(
                           child: Text(
                         'Sign In',
@@ -49,14 +49,14 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 InkWell(
                   onTap: () {},
                   child: Container(
                     decoration: buttonDecoration.copyWith(color: Colors.white),
                     width: double.infinity,
-                    height: 70,
+                    height: roundButtonHeight,
                     child: Center(
                       child: Text(
                         'Sign Up',
