@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_app/constant/constants.dart';
 
+import 'page/sign_in.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -32,9 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
         backgroundColor: Color(0xFF7DB9E6),
         body: SafeArea(
           child: Padding(
@@ -43,17 +42,25 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () {},
-                  child: Container(
-                    decoration:
-                        buttonDecoration.copyWith(color: Color(0xFF322C56)),
-                    width: double.infinity,
-                    height: 70,
-                    child: Center(
-                        child: Text(
-                      'Sign In',
-                      style: buttonTextStyle.copyWith(color: Colors.white),
-                    )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInPage()),
+                    );
+                  },
+                  child: Hero(
+                    tag: "signin",
+                    child: Container(
+                      decoration:
+                          buttonDecoration.copyWith(color: Color(0xFF322C56)),
+                      width: double.infinity,
+                      height: 70,
+                      child: Center(
+                          child: Text(
+                        'Sign In',
+                        style: buttonTextStyle.copyWith(color: Colors.white),
+                      )),
+                    ),
                   ),
                 ),
                 SizedBox(
