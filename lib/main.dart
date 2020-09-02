@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sns_app/constant/constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,39 +29,54 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+        backgroundColor: Color(0xFF7DB9E6),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration:
+                        buttonDecoration.copyWith(color: Color(0xFF322C56)),
+                    width: double.infinity,
+                    height: 70,
+                    child: Center(
+                        child: Text(
+                      'Sign In',
+                      style: buttonTextStyle.copyWith(color: Colors.white),
+                    )),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: buttonDecoration.copyWith(color: Colors.white),
+                    width: double.infinity,
+                    height: 70,
+                    child: Center(
+                      child: Text(
+                        'Sign Up',
+                        style:
+                            buttonTextStyle.copyWith(color: Color(0xFF322C56)),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
