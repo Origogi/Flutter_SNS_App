@@ -53,14 +53,14 @@ class LoginPage extends StatelessWidget {
                       child: TextField(
                         decoration: InputDecoration(
                             prefixIcon: Icon(
-                              Icons.person,
+                              Icons.email,
                               color: Colors.black26,
                             ),
                             suffixIcon: Icon(
                               Icons.check_circle,
                               color: Colors.black26,
                             ),
-                            hintText: "Username",
+                            hintText: "E-mail",
                             hintStyle: TextStyle(color: Colors.black26),
                             filled: true,
                             fillColor: Colors.white,
