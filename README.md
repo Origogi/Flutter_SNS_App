@@ -14,6 +14,6 @@ A new Flutter project.
 
 ### TODO List
 
-- [ ] Interwork Github CI/CD
+- [x] Interwork Github CI/CD
 - [ ] Implement Sign in
 - [ ] Implement Log in
