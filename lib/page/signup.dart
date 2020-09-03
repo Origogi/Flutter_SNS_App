@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sns_app/page/signup.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
-class LoginPage extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +39,7 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Login",
+                    Text("Sign Up",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white70,
@@ -100,6 +99,32 @@ class LoginPage extends StatelessWidget {
                                 horizontal: 20.0, vertical: 16.0)),
                       ),
                     ),
+                    Card(
+                      margin: EdgeInsets.only(left: 30, right: 30, top: 20),
+                      elevation: 11,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Colors.black26,
+                            ),
+                            hintText: "Name",
+                            hintStyle: TextStyle(
+                              color: Colors.black26,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(40.0)),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 16.0)),
+                      ),
+                    ),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(30.0),
@@ -111,84 +136,13 @@ class LoginPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(40.0))),
-                        child: Text("Login",
+                        child: Text("Confirm",
                             style: TextStyle(color: Colors.white70)),
                       ),
                     ),
-                    Text("Forgot your password?",
-                        style: TextStyle(color: Colors.white))
                   ],
                 ),
               ),
-              SizedBox(
-                height: 100,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Text("or, connect with"),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                        Expanded(
-                          child: RaisedButton(
-                            child: Text("Facebook"),
-                            textColor: Colors.white,
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
-                        Expanded(
-                          child: RaisedButton(
-                            child: Text("Google"),
-                            textColor: Colors.white,
-                            color: Colors.red,
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Dont have an account?"),
-                        FlatButton(
-                          child: Text("Sign up"),
-                          textColor: Colors.indigo,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpPage()),
-                            );
-                          },
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              )
             ],
           ),
         ],

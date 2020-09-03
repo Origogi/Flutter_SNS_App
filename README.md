@@ -11,3 +11,9 @@ A new Flutter project.
 ### Sign in / up
 
 [link](https://dribbble.com/shots/6984392-Splash-Sign-in-UX-Animation)
+
+### TODO List
+
+- [ ] Interwork Github CI/CD
+- [ ] Implement Sign in
+- [ ] Implement Log in
