@@ -1,8 +1,75 @@
+import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sns_app/api/user_api.dart';
+import 'package:flutter_sns_app/constant/secret.dart';
+import 'package:flutter_sns_app/model/user.dart';
+import 'package:flutter_sns_app/page/confirm.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  User _user = User();
+
+  final _userPool = CognitoUserPool(AWS_USER_POOL_ID, AWS_CLIENT_ID);
+  UserService _userService;
+  @override
+  void initState() {
+    super.initState();
+    _userService = UserService(_userPool);
+  }
+
+  void submit(BuildContext context) async {
+    _formKey.currentState.save();
+
+    String message;
+    bool signUpSuccess = false;
+    try {
+      _user =
+          await _userService.signUp(_user.email, _user.password, _user.name);
+      signUpSuccess = true;
+      message = 'User sign up successful!';
+    } on CognitoClientException catch (e) {
+      if (e.code == 'UsernameExistsException' ||
+          e.code == 'InvalidParameterException' ||
+          e.code == 'ResourceNotFoundException') {
+        message = e.message;
+      } else {
+        print(e.message);
+        message = e.message;
+      }
+    } catch (e) {
+      message = 'Unknown error occurred';
+    }
+
+    final snackBar = SnackBar(
+      content: Text(message),
+      action: SnackBarAction(
+        label: 'OK',
+        onPressed: () {
+          if (signUpSuccess) {
+            Navigator.pop(context);
+            if (!_user.confirmed) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ConfirmationPage(email: _user.email)),
+              );
+            }
+          }
+        },
+      ),
+      duration: Duration(seconds: 30),
+    );
+
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
