@@ -15,7 +15,6 @@ class ConfirmationPage extends StatefulWidget {
 }
 
 class _ConfirmationPageState extends State<ConfirmationPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String confirmationCode;
   final User _user = User();
   final _userPool = CognitoUserPool(AWS_USER_POOL_ID, AWS_CLIENT_ID);
@@ -78,7 +77,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                           borderRadius: BorderRadius.all(Radius.circular(40))),
                       child: TextField(
                         onChanged: (value) {
-                          _user.email = value;
+                          confirmationCode = value;
                         },
                         decoration: InputDecoration(
                             prefixIcon: Icon(
@@ -134,7 +133,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
     String message;
     try {
       accountConfirmed =
-          await _userService.confirmAccount(_user.email, confirmationCode);
+          await _userService.confirmAccount(widget.email, confirmationCode);
       message = 'Account successfully confirmed!';
     } on CognitoClientException catch (e) {
       if (e.code == 'InvalidParameterException' ||
@@ -169,11 +168,10 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
       duration: Duration(seconds: 30),
     );
 
-    Scaffold.of(context).showSnackBar(snackBar);
+    _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 
   _resendConfirmation(BuildContext context) async {
-    _formKey.currentState.save();
     String message;
     try {
       await _userService.resendConfirmationCode(_user.email);
@@ -199,6 +197,6 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
       duration: Duration(seconds: 30),
     );
 
-    Scaffold.of(context).showSnackBar(snackBar);
+    _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 }
