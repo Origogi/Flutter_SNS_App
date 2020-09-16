@@ -13,8 +13,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   User _user = User();
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final _userPool = CognitoUserPool(AWS_USER_POOL_ID, AWS_CLIENT_ID);
   UserService _userService;
@@ -24,9 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
     _userService = UserService(_userPool);
   }
 
-  void submit(BuildContext context) async {
-    _formKey.currentState.save();
-
+  void submit(context) async {
     String message;
     bool signUpSuccess = false;
     try {
@@ -67,12 +66,13 @@ class _SignUpPageState extends State<SignUpPage> {
       duration: Duration(seconds: 30),
     );
 
-    Scaffold.of(context).showSnackBar(snackBar);
+    _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: Stack(
         children: <Widget>[
           Container(
@@ -118,6 +118,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(40))),
                       child: TextField(
+                        onChanged: (value) {
+                          _user.email = value;
+                        },
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.email,
@@ -146,6 +149,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(40))),
                       child: TextField(
+                        onChanged: (value) {
+                          _user.password = value;
+                        },
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.lock,
@@ -172,6 +178,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(40))),
                       child: TextField(
+                        onChanged: (value) {
+                          _user.name = value;
+                        },
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.lock,
@@ -198,7 +207,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: RaisedButton(
                         padding: EdgeInsets.symmetric(vertical: 16.0),
                         color: Colors.pink,
-                        onPressed: () {},
+                        onPressed: () {
+                          submit(context);
+                        },
                         elevation: 11,
                         shape: RoundedRectangleBorder(
                             borderRadius:
